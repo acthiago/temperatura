@@ -18,3 +18,13 @@ jobs:
         with:
           username: ${{secrets.DOCKERHUB_USER}}
           password: ${{secrets.DOCKERHUB_PWD}}
+          
+      - name: Docker Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          context: ./src
+          file: ./src/Dockerfile
+          push: true
+          tags: |
+            acthiago/temperatura:latest
+            acthiago/temperatura:${{github.run_number}}    
